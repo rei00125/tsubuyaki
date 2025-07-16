@@ -6,11 +6,20 @@
 </head>
 <body>
     <h1>みんなのつぶやき</h1>
+    
+    <form th:action="@{/read}" method="get">
+        <input type="text" name="keyword" placeholder="キーワード検索" th:value="${keyword}"/>
+        <input type="submit" value="検索"/>
+    </form>
+    <a th:href="@{/read}">全件表示に戻る</a>
+    <hr/>
+    
     <ul>
         <li th:each="t: ${tsubuyakiList}">
             [[${t.comment}]] -- [[${t.name}]] on [[${t.createdAt}]]
         </li>
     </ul>
+    
     <h2>投稿する</h2>
     <form th:action="@{/read}" th:object="${tsubuyakiForm}" method="post">
         <label for="name">お名前：</label>
@@ -19,6 +28,7 @@
         <input type="text" required th:field="*{comment}" />
         <input type="submit" value="つぶやく" />
     </form>
+    
     <h2>タイトルへ</h2>
     <a th:href="@{/}">戻る</a>
 </body>
